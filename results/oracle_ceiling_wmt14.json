@@ -1,0 +1,245 @@
+{
+  "task": "wmt14",
+  "N": 3003,
+  "levels": [
+    1,
+    4,
+    8,
+    14,
+    20,
+    26,
+    32,
+    40,
+    48,
+    56,
+    64
+  ],
+  "target_len": 64,
+  "ref_tokens_mean": 25.08,
+  "ref_truncated_pct": 0.97,
+  "single_pass": {
+    "bleu": 21.73,
+    "bleu_lc": 22.62,
+    "chrf": 49.59,
+    "bp": 0.9282,
+    "prec": [
+      59.0,
+      30.5,
+      17.1,
+      9.7
+    ],
+    "len_ratio": 0.9376
+  },
+  "truncation_only": {
+    "bleu": 99.65,
+    "bleu_lc": 99.65,
+    "chrf": 99.75,
+    "bp": 0.9965,
+    "prec": [
+      100.0,
+      100.0,
+      100.0,
+      100.0
+    ],
+    "len_ratio": 0.9971
+  },
+  "ceiling": {
+    "bleu": 95.49,
+    "bleu_lc": 95.5,
+    "chrf": 96.91,
+    "bp": 0.996,
+    "prec": [
+      98.1,
+      96.6,
+      95.1,
+      93.7
+    ],
+    "len_ratio": 0.9973
+  },
+  "ceiling_argmax": {
+    "bleu": 95.49,
+    "bleu_lc": 95.5,
+    "chrf": 96.91,
+    "bp": 0.996,
+    "prec": [
+      98.1,
+      96.6,
+      95.1,
+      93.7
+    ],
+    "len_ratio": 0.9973
+  },
+  "ceiling_token_acc": 0.9939,
+  "ceiling_exact_pct": 70.0,
+  "corrector_matches_encode": 1.0,
+  "perfect_fine_levels": [
+    {
+      "bleu": 95.49,
+      "bleu_lc": 95.5,
+      "chrf": 96.91,
+      "bp": 0.996,
+      "prec": [
+        98.1,
+        96.6,
+        95.1,
+        93.7
+      ],
+      "len_ratio": 0.9973,
+      "k_generated_levels": 0
+    },
+    {
+      "bleu": 94.77,
+      "bleu_lc": 94.77,
+      "chrf": 96.4,
+      "bp": 0.9961,
+      "prec": [
+        97.8,
+        96.0,
+        94.2,
+        92.6
+      ],
+      "len_ratio": 0.9971,
+      "k_generated_levels": 1
+    },
+    {
+      "bleu": 94.72,
+      "bleu_lc": 94.72,
+      "chrf": 96.36,
+      "bp": 0.9959,
+      "prec": [
+        97.7,
+        95.9,
+        94.2,
+        92.6
+      ],
+      "len_ratio": 0.9968,
+      "k_generated_levels": 2
+    },
+    {
+      "bleu": 94.53,
+      "bleu_lc": 94.54,
+      "chrf": 96.28,
+      "bp": 0.9958,
+      "prec": [
+        97.7,
+        95.8,
+        94.0,
+        92.3
+      ],
+      "len_ratio": 0.9966,
+      "k_generated_levels": 3
+    },
+    {
+      "bleu": 94.08,
+      "bleu_lc": 94.08,
+      "chrf": 95.93,
+      "bp": 0.996,
+      "prec": [
+        97.4,
+        95.4,
+        93.4,
+        91.7
+      ],
+      "len_ratio": 0.9965,
+      "k_generated_levels": 4
+    },
+    {
+      "bleu": 92.05,
+      "bleu_lc": 92.07,
+      "chrf": 94.63,
+      "bp": 0.9957,
+      "prec": [
+        96.5,
+        93.7,
+        91.1,
+        88.7
+      ],
+      "len_ratio": 0.9957,
+      "k_generated_levels": 5
+    },
+    {
+      "bleu": 86.17,
+      "bleu_lc": 86.23,
+      "chrf": 90.63,
+      "bp": 0.9945,
+      "prec": [
+        93.6,
+        88.8,
+        84.4,
+        80.4
+      ],
+      "len_ratio": 0.9938,
+      "k_generated_levels": 6
+    },
+    {
+      "bleu": 64.01,
+      "bleu_lc": 64.19,
+      "chrf": 75.52,
+      "bp": 0.9867,
+      "prec": [
+        82.5,
+        69.6,
+        59.7,
+        51.6
+      ],
+      "len_ratio": 0.9848,
+      "k_generated_levels": 7
+    },
+    {
+      "bleu": 42.16,
+      "bleu_lc": 42.42,
+      "chrf": 60.18,
+      "bp": 0.9721,
+      "prec": [
+        70.5,
+        49.1,
+        36.5,
+        27.9
+      ],
+      "len_ratio": 0.9681,
+      "k_generated_levels": 8
+    },
+    {
+      "bleu": 24.55,
+      "bleu_lc": 24.95,
+      "chrf": 48.53,
+      "bp": 0.9502,
+      "prec": [
+        60.1,
+        31.8,
+        19.0,
+        12.3
+      ],
+      "len_ratio": 0.9444,
+      "k_generated_levels": 9
+    },
+    {
+      "bleu": 18.18,
+      "bleu_lc": 18.71,
+      "chrf": 45.08,
+      "bp": 0.9372,
+      "prec": [
+        56.2,
+        25.8,
+        13.3,
+        7.3
+      ],
+      "len_ratio": 0.9367,
+      "k_generated_levels": 10
+    },
+    {
+      "bleu": 21.73,
+      "bleu_lc": 22.62,
+      "chrf": 49.59,
+      "bp": 0.9282,
+      "prec": [
+        59.0,
+        30.5,
+        17.1,
+        9.7
+      ],
+      "len_ratio": 0.9376,
+      "k_generated_levels": 11
+    }
+  ]
+}

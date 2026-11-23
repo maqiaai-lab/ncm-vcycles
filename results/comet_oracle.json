@@ -1,0 +1,252 @@
+{
+ "newstest2014_single_pass_agreement": 0.9996669996669997,
+ "newstest2014": {
+  "single pass": {
+   "comet": 70.47,
+   "delta_vs_single": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "soft all Ts=1": {
+   "comet": 74.15,
+   "delta_vs_single": [
+    3.68,
+    3.31,
+    4.04
+   ]
+  },
+  "top8 Ts=2": {
+   "comet": 75.05,
+   "delta_vs_single": [
+    4.58,
+    4.25,
+    4.92
+   ],
+   "delta_vs_soft": [
+    0.9,
+    0.63,
+    1.18
+   ]
+  },
+  "top16 Ts=1": {
+   "comet": 75.0,
+   "delta_vs_single": [
+    4.53,
+    4.19,
+    4.87
+   ],
+   "delta_vs_soft": [
+    0.85,
+    0.59,
+    1.11
+   ]
+  },
+  "marian alone": {
+   "comet": 84.52,
+   "delta_vs_single": [
+    14.06,
+    13.64,
+    14.49
+   ]
+  },
+  "marian plan k=1": {
+   "comet": 71.34,
+   "delta_vs_single": [
+    0.88,
+    0.54,
+    1.21
+   ]
+  },
+  "marian plan k=3": {
+   "comet": 73.04,
+   "delta_vs_single": [
+    2.57,
+    2.21,
+    2.9
+   ]
+  },
+  "marian plan k=5": {
+   "comet": 75.41,
+   "delta_vs_single": [
+    4.95,
+    4.55,
+    5.33
+   ]
+  },
+  "marian plan k=9": {
+   "comet": 80.14,
+   "delta_vs_single": [
+    9.67,
+    9.26,
+    10.07
+   ]
+  },
+  "fsmt alone": {
+   "comet": 86.58,
+   "delta_vs_single": [
+    16.11,
+    15.69,
+    16.54
+   ]
+  },
+  "fsmt plan k=1": {
+   "comet": 71.14,
+   "delta_vs_single": [
+    0.68,
+    0.32,
+    1.02
+   ]
+  },
+  "fsmt plan k=3": {
+   "comet": 72.63,
+   "delta_vs_single": [
+    2.16,
+    1.76,
+    2.52
+   ]
+  },
+  "fsmt plan k=5": {
+   "comet": 75.83,
+   "delta_vs_single": [
+    5.37,
+    4.97,
+    5.8
+   ]
+  },
+  "fsmt plan k=9": {
+   "comet": 81.29,
+   "delta_vs_single": [
+    10.82,
+    10.39,
+    11.26
+   ]
+  }
+ },
+ "newstest2013_single_pass_agreement": 0.9996666666666667,
+ "newstest2013": {
+  "single pass": {
+   "comet": 72.54,
+   "delta_vs_single": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "soft all Ts=1": {
+   "comet": 76.47,
+   "delta_vs_single": [
+    3.92,
+    3.58,
+    4.25
+   ]
+  },
+  "top8 Ts=2": {
+   "comet": 76.87,
+   "delta_vs_single": [
+    4.33,
+    3.98,
+    4.65
+   ],
+   "delta_vs_soft": [
+    0.41,
+    0.16,
+    0.67
+   ]
+  },
+  "top16 Ts=1": {
+   "comet": 76.74,
+   "delta_vs_single": [
+    4.2,
+    3.87,
+    4.51
+   ],
+   "delta_vs_soft": [
+    0.28,
+    0.05,
+    0.5
+   ]
+  },
+  "marian alone": {
+   "comet": 84.86,
+   "delta_vs_single": [
+    12.31,
+    11.89,
+    12.71
+   ]
+  },
+  "marian plan k=1": {
+   "comet": 73.68,
+   "delta_vs_single": [
+    1.14,
+    0.79,
+    1.45
+   ]
+  },
+  "marian plan k=3": {
+   "comet": 75.18,
+   "delta_vs_single": [
+    2.63,
+    2.27,
+    2.97
+   ]
+  },
+  "marian plan k=5": {
+   "comet": 77.28,
+   "delta_vs_single": [
+    4.74,
+    4.34,
+    5.08
+   ]
+  },
+  "marian plan k=9": {
+   "comet": 80.95,
+   "delta_vs_single": [
+    8.4,
+    8.0,
+    8.77
+   ]
+  },
+  "fsmt alone": {
+   "comet": 86.39,
+   "delta_vs_single": [
+    13.85,
+    13.4,
+    14.27
+   ]
+  },
+  "fsmt plan k=1": {
+   "comet": 73.52,
+   "delta_vs_single": [
+    0.98,
+    0.64,
+    1.31
+   ]
+  },
+  "fsmt plan k=3": {
+   "comet": 75.07,
+   "delta_vs_single": [
+    2.52,
+    2.12,
+    2.9
+   ]
+  },
+  "fsmt plan k=5": {
+   "comet": 77.73,
+   "delta_vs_single": [
+    5.19,
+    4.77,
+    5.57
+   ]
+  },
+  "fsmt plan k=9": {
+   "comet": 82.08,
+   "delta_vs_single": [
+    9.53,
+    9.1,
+    9.91
+   ]
+  }
+ }
+}

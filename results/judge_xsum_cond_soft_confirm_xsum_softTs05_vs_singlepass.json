@@ -1,0 +1,21 @@
+{
+  "task": "xsum",
+  "size": null,
+  "a": "soft Ts=0.5",
+  "b": "single pass",
+  "judge": "Qwen/Qwen2.5-7B-Instruct",
+  "items": 2000,
+  "mean_preference_for_a": [
+    0.5657693745041265,
+    0.552701121580655,
+    0.5784740295765612
+  ],
+  "share_preferring_a": [
+    0.5755,
+    0.553,
+    0.597
+  ],
+  "order_agreement": 0.471,
+  "letter_a_share": 0.6896984344864262,
+  "seconds": 660.2929197230001
+}

@@ -1,0 +1,231 @@
+{
+  "task": "wmt14",
+  "data": "test",
+  "N": 3003,
+  "levels": [
+    1,
+    4,
+    8,
+    14,
+    20,
+    26,
+    32,
+    40,
+    48,
+    56,
+    64
+  ],
+  "coarse_levels": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "plans": [
+    "own",
+    "gold",
+    "marian",
+    "fsmt"
+  ],
+  "mean_ll_per_level": {
+    "own": [
+      -2.73,
+      -4.06,
+      -6.79,
+      -10.15,
+      -11.77,
+      -13.11,
+      -8.97,
+      -16.63,
+      -20.99,
+      -29.45,
+      -16.36
+    ],
+    "gold": [
+      -4.6,
+      -9.19,
+      -18.04,
+      -27.5,
+      -32.42,
+      -36.42,
+      -24.33,
+      -42.09,
+      -50.0,
+      -69.72,
+      -35.83
+    ],
+    "marian": [
+      -4.06,
+      -7.44,
+      -13.84,
+      -20.74,
+      -23.8,
+      -26.87,
+      -17.61,
+      -35.18,
+      -44.17,
+      -64.07,
+      -31.98
+    ],
+    "fsmt": [
+      -4.17,
+      -7.67,
+      -14.92,
+      -22.23,
+      -25.82,
+      -29.16,
+      -19.54,
+      -37.21,
+      -45.99,
+      -65.83,
+      -33.52
+    ]
+  },
+  "own_rank0_share_coarse": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "gold": {
+    "share_scores_above_own_coarse": 0.001,
+    "share_scores_above_own_all": 0.0003,
+    "median_gap_coarse_nats": -53.84,
+    "median_gap_all_nats": -193.47,
+    "coarse_rank": [
+      {
+        "level": 0,
+        "top1": 0.115,
+        "top5": 0.279,
+        "top20": 0.523,
+        "median": 17.0
+      },
+      {
+        "level": 1,
+        "top1": 0.391,
+        "top5": 0.757,
+        "top20": 0.918,
+        "median": 1.0
+      },
+      {
+        "level": 2,
+        "top1": 0.416,
+        "top5": 0.772,
+        "top20": 0.91,
+        "median": 1.0
+      },
+      {
+        "level": 3,
+        "top1": 0.476,
+        "top5": 0.836,
+        "top20": 0.922,
+        "median": 1.0
+      },
+      {
+        "level": 4,
+        "top1": 0.553,
+        "top5": 0.88,
+        "top20": 0.939,
+        "median": 0.0
+      }
+    ]
+  },
+  "marian": {
+    "share_scores_above_own_coarse": 0.004,
+    "share_scores_above_own_all": 0.0,
+    "median_gap_coarse_nats": -32.46,
+    "median_gap_all_nats": -138.29,
+    "coarse_rank": [
+      {
+        "level": 0,
+        "top1": 0.164,
+        "top5": 0.394,
+        "top20": 0.682,
+        "median": 8.0
+      },
+      {
+        "level": 1,
+        "top1": 0.475,
+        "top5": 0.846,
+        "top20": 0.961,
+        "median": 1.0
+      },
+      {
+        "level": 2,
+        "top1": 0.5,
+        "top5": 0.863,
+        "top20": 0.962,
+        "median": 1.0
+      },
+      {
+        "level": 3,
+        "top1": 0.551,
+        "top5": 0.907,
+        "top20": 0.972,
+        "median": 0.0
+      },
+      {
+        "level": 4,
+        "top1": 0.627,
+        "top5": 0.941,
+        "top20": 0.978,
+        "median": 0.0
+      }
+    ],
+    "k5_helps_share": 0.7106,
+    "auroc_gap_predicts_help": 0.4917,
+    "metric_single": 48.44,
+    "metric_k5_always": 53.69,
+    "metric_k5_where_ncm_prefers": 48.47
+  },
+  "fsmt": {
+    "share_scores_above_own_coarse": 0.002,
+    "share_scores_above_own_all": 0.0,
+    "median_gap_coarse_nats": -37.55,
+    "median_gap_all_nats": -154.29,
+    "coarse_rank": [
+      {
+        "level": 0,
+        "top1": 0.148,
+        "top5": 0.354,
+        "top20": 0.643,
+        "median": 10.0
+      },
+      {
+        "level": 1,
+        "top1": 0.464,
+        "top5": 0.832,
+        "top20": 0.953,
+        "median": 1.0
+      },
+      {
+        "level": 2,
+        "top1": 0.472,
+        "top5": 0.837,
+        "top20": 0.95,
+        "median": 1.0
+      },
+      {
+        "level": 3,
+        "top1": 0.53,
+        "top5": 0.891,
+        "top20": 0.96,
+        "median": 0.0
+      },
+      {
+        "level": 4,
+        "top1": 0.602,
+        "top5": 0.929,
+        "top20": 0.971,
+        "median": 0.0
+      }
+    ],
+    "k5_helps_share": 0.7416,
+    "auroc_gap_predicts_help": 0.4782,
+    "metric_single": 48.44,
+    "metric_k5_always": 55.0,
+    "metric_k5_where_ncm_prefers": 48.46
+  }
+}

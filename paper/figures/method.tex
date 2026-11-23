@@ -1,0 +1,76 @@
+% Method schematic (TikZ): a V-cycle (a); one level of the downward pass under a hard decision (b) and a soft decision (c).
+% Visual language of the schematics of the NCM paper: sans-serif labels, gold for the codes the generator produces
+% (darker for coarser levels), blue for the context that is kept.
+\begin{tikzpicture}[
+  font=\sffamily\footnotesize, line width=0.6pt,
+  >={Stealth[length=2mm,width=1.6mm]},
+  box/.style={draw=cink!55, rounded corners=2pt, align=center, inner sep=3.5pt, fill=white},
+  lab/.style={font=\sffamily\scriptsize, text=cmuted, align=center},
+  arr/.style={->, draw=cink!70},
+  head/.style={font=\sffamily\footnotesize\bfseries, text=cink, anchor=west},
+  lev/.style={line width=0.3pt},
+]
+% ---------------- (a) V-cycle ----------------
+\node[head] at (-0.15, 1.30) {(a) V-cycle: back up through the frozen tokenizer, then down again};
+% one pass: five levels, coarse (dark) to fine (light)
+\foreach \i/\w/\c in {0/0.40/clvA, 1/0.80/clvB, 2/1.25/clvC, 3/1.75/clvD, 4/2.30/clvE}
+  \filldraw[lev, fill=\c, draw=cgoldedge] (0.75, {0.70-\i*0.32}) rectangle ++(\w, -0.22);
+\coordinate (s1mid) at (3.05, -0.05);
+\node[lab, anchor=east] at (0.68, 0.59) {coarse};
+\node[lab, anchor=east] at (0.68, -0.69) {fine};
+\node[lab, anchor=north] at (1.9, -0.98) {one pass: coarse to fine,\\one evaluation per level};
+\node[box] (x) at (5.2, -0.05) {draft $x$};
+\draw[arr] ($(s1mid)+(0.15,0)$) -- node[lab, above] {decode} (x.west);
+% after re-encoding: the coarse levels are kept as context, the fine ones are generated again
+\foreach \i/\w/\c/\e in {0/0.40/cctx/cctxedge, 1/0.80/cctx/cctxedge, 2/1.25/clvC/cgoldedge, 3/1.75/clvD/cgoldedge,
+                         4/2.30/clvE/cgoldedge}
+  \filldraw[lev, fill=\c, draw=\e] (8.45, {0.70-\i*0.32}) rectangle ++(\w, -0.22);
+\coordinate (s2in) at (8.45, -0.05);
+\draw[arr] (x.east) -- node[lab, above] {re-encode} node[lab, below] {$E(x)$} ($(s2in)+(-0.15,0)$);
+\node[lab, anchor=west, text=cctxtxt] at (9.40, 0.43) {keep levels $<m$ of $E(x)$};
+\node[lab, anchor=west, text=cgoldtxt] at (10.90, -0.37) {regenerate\\levels $\geq m$};
+\node[box] (xp) at (14.75, -0.05) {corrected $x'$};
+\draw[arr] (12.75, -0.05) -- node[lab, above] {decode} (xp.west);
+\node[lab, anchor=north] at (9.75, -0.98) {restriction, then correction: $K-m$ extra evaluations};
+
+% ---------------- (b) hard decision ----------------
+\begin{scope}[yshift=-3.35cm]
+\node[head] at (-0.15, 1.20) {(b) On the way down: a hard decision (released decoding)};
+\node[box] (ga) at (1.0, 0.25) {generator,\\level $k$};
+\foreach \i/\h in {0/0.22, 2/0.60, 3/0.16, 4/0.10}
+  \fill[cmuted!30] ({3.0+\i*0.34}, -0.20) rectangle ++(0.26, \h);
+\filldraw[lev, fill=cgold, draw=cgoldedge] ({3.0+0.34}, -0.20) rectangle ++(0.26, 0.95);
+\draw[cink!40] (2.92, -0.20) -- (4.70, -0.20);
+\node[lab, anchor=north] at (3.70, -0.27) {$p_k$ over the\\codebook, one position};
+\draw[arr] (ga.east) -- (2.82, 0.25);
+\node[box, minimum width=3.9cm] (va) at (8.2, 0.25) {$e_k(\hat c),\quad \hat c=\arg\max_c\,p_k(c)$};
+\draw[arr] (4.85, 0.25) -- node[lab, above] {arg max} (va.west);
+\node[lab, anchor=north] at (8.2, -0.27) {one code vector;\\the rest of $p_k$ is discarded};
+\node[circle, draw=cink!70, inner sep=1.2pt] (pa) at (11.45, 0.25) {$+$};
+\draw[arr] (va.east) -- node[lab, above] {$R_k$} (pa.west);
+\node[lab] (za) at (11.45, 1.05) {$\hat z^{(k-1)}$};
+\draw[arr] (za.south) -- (pa.north);
+\node[box] (na) at (14.35, 0.25) {levels $k{+}1,\dots,K{-}1$\\and the decoder};
+\draw[arr] (pa.east) -- node[lab, above] {$\hat z^{(k)}$} (na.west);
+\end{scope}
+
+% ---------------- (c) soft decision ----------------
+\begin{scope}[yshift=-6.10cm]
+\node[head] at (-0.15, 1.20) {(c) On the way down: a soft decision};
+\node[box] (gb) at (1.0, 0.25) {generator,\\level $k$};
+\foreach \i/\h/\c in {0/0.22/cgold!45, 1/0.95/cgold, 2/0.60/cgold!80, 3/0.16/cgold!40, 4/0.10/cgold!35}
+  \filldraw[lev, fill=\c, draw=cgoldedge] ({3.0+\i*0.34}, -0.20) rectangle ++(0.26, \h);
+\draw[cink!40] (2.92, -0.20) -- (4.70, -0.20);
+\node[lab, anchor=north] at (3.70, -0.27) {$p_k$ over the\\codebook, one position};
+\draw[arr] (gb.east) -- (2.82, 0.25);
+\node[box, minimum width=3.9cm, draw=cgoldedge, fill=cgoldbg, line width=0.9pt] (vb) at (8.2, 0.25) {$\sum_c p_k(c)\,e_k(c)$};
+\draw[arr] (4.85, 0.25) -- node[lab, above] {all of $p_k$} (vb.west);
+\node[lab, anchor=north] at (8.2, -0.27) {posterior-mean code vector;\\no extra evaluation};
+\node[circle, draw=cink!70, inner sep=1.2pt] (pb) at (11.45, 0.25) {$+$};
+\draw[arr] (vb.east) -- node[lab, above] {$R_k$} (pb.west);
+\node[lab] (zb) at (11.45, 1.05) {$\hat z^{(k-1)}$};
+\draw[arr] (zb.south) -- (pb.north);
+\node[box] (nb) at (14.35, 0.25) {levels $k{+}1,\dots,K{-}1$\\and the decoder};
+\draw[arr] (pb.east) -- node[lab, above] {$\hat z^{(k)}$} (nb.west);
+\end{scope}
+\end{tikzpicture}

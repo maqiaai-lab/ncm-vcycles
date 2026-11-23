@@ -1,0 +1,103 @@
+{
+  "memorization": {
+    "wmt14": {
+      "ncm single pass": {
+        "exact_match_pct": 0.2,
+        "near_copy_pct": 0.17,
+        "median_sentence_score": 16.8
+      },
+      "marian": {
+        "exact_match_pct": 1.5,
+        "near_copy_pct": 1.37,
+        "median_sentence_score": 28.81
+      },
+      "fsmt": {
+        "exact_match_pct": 2.1,
+        "near_copy_pct": 2.06,
+        "median_sentence_score": 34.46
+      }
+    },
+    "wmt14_nt2013": {
+      "ncm single pass": {
+        "exact_match_pct": 0.6,
+        "near_copy_pct": 0.63,
+        "median_sentence_score": 17.62
+      },
+      "marian": {
+        "exact_match_pct": 2.2,
+        "near_copy_pct": 2.07,
+        "median_sentence_score": 26.89
+      },
+      "fsmt": {
+        "exact_match_pct": 3.0,
+        "near_copy_pct": 2.9,
+        "median_sentence_score": 31.47
+      }
+    },
+    "xsum": {
+      "ncm single pass": {
+        "exact_match_pct": 0.07,
+        "near_copy_pct": 0.1,
+        "median_sentence_score": 34.04
+      },
+      "bart": {
+        "exact_match_pct": 7.2,
+        "near_copy_pct": 19.8,
+        "median_sentence_score": 68.42
+      }
+    }
+  },
+  "xsum_bart_subsets": {
+    "all": {
+      "n": 3000,
+      "bart_alone_rouge1": 67.65,
+      "single_pass_rouge1": 34.69,
+      "k=1": {
+        "rouge1_gain": 4.82,
+        "share_of_lead": 0.146
+      },
+      "k=3": {
+        "rouge1_gain": 16.03,
+        "share_of_lead": 0.486
+      },
+      "k=5": {
+        "rouge1_gain": 26.38,
+        "share_of_lead": 0.8
+      }
+    },
+    "bart_rouge1_below_90": {
+      "n": 2406,
+      "bart_alone_rouge1": 60.59,
+      "single_pass_rouge1": 33.85,
+      "k=1": {
+        "rouge1_gain": 3.91,
+        "share_of_lead": 0.146
+      },
+      "k=3": {
+        "rouge1_gain": 13.18,
+        "share_of_lead": 0.493
+      },
+      "k=5": {
+        "rouge1_gain": 21.47,
+        "share_of_lead": 0.803
+      }
+    },
+    "bart_rouge1_below_50": {
+      "n": 665,
+      "bart_alone_rouge1": 36.87,
+      "single_pass_rouge1": 27.58,
+      "k=1": {
+        "rouge1_gain": 0.25,
+        "share_of_lead": 0.027
+      },
+      "k=3": {
+        "rouge1_gain": 3.7,
+        "share_of_lead": 0.398
+      },
+      "k=5": {
+        "rouge1_gain": 6.83,
+        "share_of_lead": 0.735
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "task": "wmt14",
+  "size": null,
+  "a": "soft Ts=1",
+  "b": "single pass",
+  "judge": "Qwen/Qwen2.5-7B-Instruct",
+  "items": 3003,
+  "mean_preference_for_a": [
+    0.6333891922271359,
+    0.6220428721338108,
+    0.645192020876426
+  ],
+  "share_preferring_a": [
+    0.6603396603396603,
+    0.6446886446886447,
+    0.6776556776556777
+  ],
+  "order_agreement": 0.5624375624375625,
+  "letter_a_share": 0.6486277652320869,
+  "seconds": 379.66363798400016
+}

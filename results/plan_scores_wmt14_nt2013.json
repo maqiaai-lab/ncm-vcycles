@@ -1,0 +1,231 @@
+{
+  "task": "wmt14",
+  "data": "newstest2013",
+  "N": 3000,
+  "levels": [
+    1,
+    4,
+    8,
+    14,
+    20,
+    26,
+    32,
+    40,
+    48,
+    56,
+    64
+  ],
+  "coarse_levels": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "plans": [
+    "own",
+    "gold",
+    "marian",
+    "fsmt"
+  ],
+  "mean_ll_per_level": {
+    "own": [
+      -2.48,
+      -3.78,
+      -6.36,
+      -9.61,
+      -11.1,
+      -12.41,
+      -8.36,
+      -15.6,
+      -19.96,
+      -28.35,
+      -15.65
+    ],
+    "gold": [
+      -4.45,
+      -9.01,
+      -17.47,
+      -26.98,
+      -31.91,
+      -34.58,
+      -22.27,
+      -37.85,
+      -46.31,
+      -64.94,
+      -32.56
+    ],
+    "marian": [
+      -3.79,
+      -6.75,
+      -12.83,
+      -19.16,
+      -21.93,
+      -24.97,
+      -16.06,
+      -32.67,
+      -41.5,
+      -60.65,
+      -30.71
+    ],
+    "fsmt": [
+      -3.92,
+      -7.06,
+      -13.54,
+      -20.36,
+      -23.49,
+      -26.09,
+      -17.31,
+      -33.82,
+      -42.81,
+      -61.63,
+      -31.39
+    ]
+  },
+  "own_rank0_share_coarse": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "gold": {
+    "share_scores_above_own_coarse": 0.0013,
+    "share_scores_above_own_all": 0.0007,
+    "median_gap_coarse_nats": -53.41,
+    "median_gap_all_nats": -176.29,
+    "coarse_rank": [
+      {
+        "level": 0,
+        "top1": 0.114,
+        "top5": 0.299,
+        "top20": 0.542,
+        "median": 16.0
+      },
+      {
+        "level": 1,
+        "top1": 0.399,
+        "top5": 0.767,
+        "top20": 0.92,
+        "median": 1.0
+      },
+      {
+        "level": 2,
+        "top1": 0.432,
+        "top5": 0.78,
+        "top20": 0.914,
+        "median": 1.0
+      },
+      {
+        "level": 3,
+        "top1": 0.482,
+        "top5": 0.84,
+        "top20": 0.924,
+        "median": 1.0
+      },
+      {
+        "level": 4,
+        "top1": 0.559,
+        "top5": 0.885,
+        "top20": 0.94,
+        "median": 0.0
+      }
+    ]
+  },
+  "marian": {
+    "share_scores_above_own_coarse": 0.0063,
+    "share_scores_above_own_all": 0.0013,
+    "median_gap_coarse_nats": -29.02,
+    "median_gap_all_nats": -124.6,
+    "coarse_rank": [
+      {
+        "level": 0,
+        "top1": 0.182,
+        "top5": 0.443,
+        "top20": 0.729,
+        "median": 6.0
+      },
+      {
+        "level": 1,
+        "top1": 0.513,
+        "top5": 0.874,
+        "top20": 0.969,
+        "median": 0.0
+      },
+      {
+        "level": 2,
+        "top1": 0.533,
+        "top5": 0.879,
+        "top20": 0.968,
+        "median": 0.0
+      },
+      {
+        "level": 3,
+        "top1": 0.578,
+        "top5": 0.92,
+        "top20": 0.977,
+        "median": 0.0
+      },
+      {
+        "level": 4,
+        "top1": 0.646,
+        "top5": 0.951,
+        "top20": 0.983,
+        "median": 0.0
+      }
+    ],
+    "k5_helps_share": 0.661,
+    "auroc_gap_predicts_help": 0.4997,
+    "metric_single": 48.54,
+    "metric_k5_always": 52.65,
+    "metric_k5_where_ncm_prefers": 48.65
+  },
+  "fsmt": {
+    "share_scores_above_own_coarse": 0.005,
+    "share_scores_above_own_all": 0.0013,
+    "median_gap_coarse_nats": -32.59,
+    "median_gap_all_nats": -133.59,
+    "coarse_rank": [
+      {
+        "level": 0,
+        "top1": 0.17,
+        "top5": 0.413,
+        "top20": 0.691,
+        "median": 7.0
+      },
+      {
+        "level": 1,
+        "top1": 0.493,
+        "top5": 0.857,
+        "top20": 0.962,
+        "median": 1.0
+      },
+      {
+        "level": 2,
+        "top1": 0.516,
+        "top5": 0.866,
+        "top20": 0.961,
+        "median": 0.0
+      },
+      {
+        "level": 3,
+        "top1": 0.563,
+        "top5": 0.909,
+        "top20": 0.97,
+        "median": 0.0
+      },
+      {
+        "level": 4,
+        "top1": 0.635,
+        "top5": 0.94,
+        "top20": 0.977,
+        "median": 0.0
+      }
+    ],
+    "k5_helps_share": 0.704,
+    "auroc_gap_predicts_help": 0.4908,
+    "metric_single": 48.54,
+    "metric_k5_always": 54.05,
+    "metric_k5_where_ncm_prefers": 48.59
+  }
+}

@@ -1,0 +1,718 @@
+{
+  "task": "xsum",
+  "data": "test",
+  "N": 3000,
+  "levels": [
+    4,
+    6,
+    10,
+    14,
+    20,
+    26,
+    32,
+    40,
+    48
+  ],
+  "provenance": "gold and self plans: one run (RTX 4050); the external plan and the single pass: a second run (A10G); the two single passes agree on 99.5% of the articles (near-ties)",
+  "single_pass": {
+    "rouge1": 34.69,
+    "rouge2": 12.5,
+    "rougeL": 27.76,
+    "words": 20.8,
+    "matches_cached_text": 0.995
+  },
+  "notes": {
+    "bart": {
+      "model": "facebook/bart-large-xsum",
+      "beams": "model default",
+      "cut_pct": 0.26666666666666666
+    }
+  },
+  "bart_alone": {
+    "rouge1": 67.65,
+    "rouge2": 52.15,
+    "rougeL": 62.2,
+    "words": 19.0,
+    "delta_vs_single": {
+      "rouge1": [
+        32.96,
+        32.11,
+        33.72
+      ],
+      "rouge2": [
+        39.65,
+        38.63,
+        40.56
+      ],
+      "rougeL": [
+        34.44,
+        33.49,
+        35.27
+      ]
+    }
+  },
+  "plans": {
+    "gold": [
+      {
+        "rouge1": 43.31,
+        "rouge2": 19.86,
+        "rougeL": 38.32,
+        "words": 20.48,
+        "k": 1,
+        "delta_vs_single": {
+          "rouge1": [
+            8.63,
+            8.24,
+            9.05
+          ],
+          "rouge2": [
+            7.35,
+            6.97,
+            7.73
+          ],
+          "rougeL": [
+            10.56,
+            10.16,
+            10.95
+          ]
+        },
+        "teacher_forced_acc_level_k": 0.4193
+      },
+      {
+        "rouge1": 52.19,
+        "rouge2": 27.77,
+        "rougeL": 48.78,
+        "words": 20.74,
+        "k": 2,
+        "delta_vs_single": {
+          "rouge1": [
+            17.51,
+            17.07,
+            17.94
+          ],
+          "rouge2": [
+            15.26,
+            14.78,
+            15.74
+          ],
+          "rougeL": [
+            21.02,
+            20.58,
+            21.46
+          ]
+        },
+        "teacher_forced_acc_level_k": 0.2346
+      },
+      {
+        "rouge1": 63.3,
+        "rouge2": 39.45,
+        "rougeL": 61.07,
+        "words": 20.96,
+        "k": 3,
+        "delta_vs_single": {
+          "rouge1": [
+            28.62,
+            28.15,
+            29.08
+          ],
+          "rouge2": [
+            26.94,
+            26.4,
+            27.51
+          ],
+          "rougeL": [
+            33.3,
+            32.85,
+            33.75
+          ]
+        },
+        "teacher_forced_acc_level_k": 0.5989
+      },
+      {
+        "rouge1": 75.75,
+        "rouge2": 56.22,
+        "rougeL": 74.48,
+        "words": 21.06,
+        "k": 4,
+        "delta_vs_single": {
+          "rouge1": [
+            41.07,
+            40.62,
+            41.53
+          ],
+          "rouge2": [
+            43.71,
+            43.09,
+            44.35
+          ],
+          "rougeL": [
+            46.72,
+            46.23,
+            47.23
+          ]
+        },
+        "teacher_forced_acc_level_k": 0.4888
+      },
+      {
+        "rouge1": 85.53,
+        "rouge2": 72.39,
+        "rougeL": 84.96,
+        "words": 21.03,
+        "k": 5,
+        "delta_vs_single": {
+          "rouge1": [
+            50.85,
+            50.38,
+            51.31
+          ],
+          "rouge2": [
+            59.88,
+            59.27,
+            60.5
+          ],
+          "rougeL": [
+            57.2,
+            56.72,
+            57.67
+          ]
+        },
+        "teacher_forced_acc_level_k": 0.3173
+      },
+      {
+        "rouge1": 91.72,
+        "rouge2": 83.76,
+        "rougeL": 91.47,
+        "words": 21.03,
+        "k": 6,
+        "delta_vs_single": {
+          "rouge1": [
+            57.03,
+            56.57,
+            57.46
+          ],
+          "rouge2": [
+            71.25,
+            70.71,
+            71.8
+          ],
+          "rougeL": [
+            63.7,
+            63.21,
+            64.15
+          ]
+        },
+        "teacher_forced_acc_level_k": 0.6403
+      },
+      {
+        "rouge1": 95.6,
+        "rouge2": 91.44,
+        "rougeL": 95.49,
+        "words": 21.03,
+        "k": 7,
+        "delta_vs_single": {
+          "rouge1": [
+            60.92,
+            60.45,
+            61.37
+          ],
+          "rouge2": [
+            78.93,
+            78.44,
+            79.39
+          ],
+          "rougeL": [
+            67.73,
+            67.23,
+            68.18
+          ]
+        },
+        "teacher_forced_acc_level_k": 0.4524
+      },
+      {
+        "rouge1": 97.65,
+        "rouge2": 95.48,
+        "rougeL": 97.6,
+        "words": 21.07,
+        "k": 8,
+        "delta_vs_single": {
+          "rouge1": [
+            62.97,
+            62.49,
+            63.44
+          ],
+          "rouge2": [
+            82.97,
+            82.49,
+            83.4
+          ],
+          "rougeL": [
+            69.84,
+            69.35,
+            70.29
+          ]
+        },
+        "teacher_forced_acc_level_k": 0.792
+      },
+      {
+        "rouge1": 99.51,
+        "rouge2": 99.15,
+        "rougeL": 99.51,
+        "words": 21.1,
+        "k": 9,
+        "delta_vs_single": {
+          "rouge1": [
+            64.83,
+            64.34,
+            65.31
+          ],
+          "rouge2": [
+            86.64,
+            86.2,
+            87.04
+          ],
+          "rougeL": [
+            71.75,
+            71.26,
+            72.2
+          ]
+        }
+      }
+    ],
+    "self": [
+      {
+        "rouge1": 34.83,
+        "rouge2": 12.59,
+        "rougeL": 27.84,
+        "words": 20.81,
+        "k": 1,
+        "delta_vs_single": {
+          "rouge1": [
+            0.14,
+            -0.07,
+            0.34
+          ],
+          "rouge2": [
+            0.08,
+            -0.09,
+            0.24
+          ],
+          "rougeL": [
+            0.08,
+            -0.11,
+            0.26
+          ]
+        }
+      },
+      {
+        "rouge1": 34.87,
+        "rouge2": 12.55,
+        "rougeL": 27.91,
+        "words": 20.79,
+        "k": 2,
+        "delta_vs_single": {
+          "rouge1": [
+            0.19,
+            -0.01,
+            0.38
+          ],
+          "rouge2": [
+            0.04,
+            -0.13,
+            0.2
+          ],
+          "rougeL": [
+            0.14,
+            -0.03,
+            0.31
+          ]
+        }
+      },
+      {
+        "rouge1": 34.92,
+        "rouge2": 12.71,
+        "rougeL": 27.98,
+        "words": 20.83,
+        "k": 3,
+        "delta_vs_single": {
+          "rouge1": [
+            0.24,
+            0.05,
+            0.42
+          ],
+          "rouge2": [
+            0.2,
+            0.05,
+            0.35
+          ],
+          "rougeL": [
+            0.22,
+            0.07,
+            0.36
+          ]
+        }
+      },
+      {
+        "rouge1": 34.88,
+        "rouge2": 12.67,
+        "rougeL": 27.9,
+        "words": 20.87,
+        "k": 4,
+        "delta_vs_single": {
+          "rouge1": [
+            0.2,
+            0.05,
+            0.33
+          ],
+          "rouge2": [
+            0.16,
+            0.03,
+            0.28
+          ],
+          "rougeL": [
+            0.13,
+            0.02,
+            0.24
+          ]
+        }
+      },
+      {
+        "rouge1": 34.94,
+        "rouge2": 12.7,
+        "rougeL": 27.96,
+        "words": 20.88,
+        "k": 5,
+        "delta_vs_single": {
+          "rouge1": [
+            0.26,
+            0.15,
+            0.36
+          ],
+          "rouge2": [
+            0.2,
+            0.1,
+            0.29
+          ],
+          "rougeL": [
+            0.2,
+            0.11,
+            0.28
+          ]
+        }
+      },
+      {
+        "rouge1": 34.87,
+        "rouge2": 12.62,
+        "rougeL": 27.89,
+        "words": 20.86,
+        "k": 6,
+        "delta_vs_single": {
+          "rouge1": [
+            0.19,
+            0.11,
+            0.27
+          ],
+          "rouge2": [
+            0.11,
+            0.04,
+            0.19
+          ],
+          "rougeL": [
+            0.12,
+            0.06,
+            0.2
+          ]
+        }
+      },
+      {
+        "rouge1": 34.83,
+        "rouge2": 12.59,
+        "rougeL": 27.86,
+        "words": 20.86,
+        "k": 7,
+        "delta_vs_single": {
+          "rouge1": [
+            0.14,
+            0.08,
+            0.2
+          ],
+          "rouge2": [
+            0.08,
+            0.03,
+            0.12
+          ],
+          "rougeL": [
+            0.09,
+            0.04,
+            0.14
+          ]
+        }
+      },
+      {
+        "rouge1": 34.71,
+        "rouge2": 12.54,
+        "rougeL": 27.78,
+        "words": 20.87,
+        "k": 8,
+        "delta_vs_single": {
+          "rouge1": [
+            0.03,
+            -0.01,
+            0.07
+          ],
+          "rouge2": [
+            0.03,
+            -0.01,
+            0.06
+          ],
+          "rougeL": [
+            0.01,
+            -0.02,
+            0.05
+          ]
+        }
+      },
+      {
+        "rouge1": 34.66,
+        "rouge2": 12.47,
+        "rougeL": 27.73,
+        "words": 20.82,
+        "k": 9,
+        "delta_vs_single": {
+          "rouge1": [
+            -0.03,
+            -0.06,
+            0.0
+          ],
+          "rouge2": [
+            -0.04,
+            -0.07,
+            -0.02
+          ],
+          "rougeL": [
+            -0.04,
+            -0.06,
+            -0.01
+          ]
+        }
+      }
+    ],
+    "ext:bart": [
+      {
+        "rouge1": 39.51,
+        "rouge2": 16.96,
+        "rougeL": 33.57,
+        "words": 18.81,
+        "k": 1,
+        "delta_vs_single": {
+          "rouge1": [
+            4.82,
+            4.41,
+            5.25
+          ],
+          "rouge2": [
+            4.46,
+            4.07,
+            4.85
+          ],
+          "rougeL": [
+            5.8,
+            5.38,
+            6.2
+          ]
+        }
+      },
+      {
+        "rouge1": 44.84,
+        "rouge2": 21.5,
+        "rougeL": 39.08,
+        "words": 18.86,
+        "k": 2,
+        "delta_vs_single": {
+          "rouge1": [
+            10.15,
+            9.67,
+            10.58
+          ],
+          "rouge2": [
+            9.0,
+            8.54,
+            9.45
+          ],
+          "rougeL": [
+            11.31,
+            10.8,
+            11.78
+          ]
+        }
+      },
+      {
+        "rouge1": 50.72,
+        "rouge2": 27.48,
+        "rougeL": 45.18,
+        "words": 18.89,
+        "k": 3,
+        "delta_vs_single": {
+          "rouge1": [
+            16.03,
+            15.47,
+            16.54
+          ],
+          "rouge2": [
+            14.98,
+            14.44,
+            15.48
+          ],
+          "rougeL": [
+            17.42,
+            16.83,
+            17.96
+          ]
+        }
+      },
+      {
+        "rouge1": 56.84,
+        "rouge2": 35.0,
+        "rougeL": 51.27,
+        "words": 18.93,
+        "k": 4,
+        "delta_vs_single": {
+          "rouge1": [
+            22.15,
+            21.49,
+            22.75
+          ],
+          "rouge2": [
+            22.5,
+            21.8,
+            23.16
+          ],
+          "rougeL": [
+            23.51,
+            22.8,
+            24.19
+          ]
+        }
+      },
+      {
+        "rouge1": 61.07,
+        "rouge2": 41.44,
+        "rougeL": 55.69,
+        "words": 18.91,
+        "k": 5,
+        "delta_vs_single": {
+          "rouge1": [
+            26.38,
+            25.64,
+            27.02
+          ],
+          "rouge2": [
+            28.93,
+            28.09,
+            29.67
+          ],
+          "rougeL": [
+            27.92,
+            27.1,
+            28.64
+          ]
+        }
+      },
+      {
+        "rouge1": 63.8,
+        "rouge2": 45.75,
+        "rougeL": 58.45,
+        "words": 18.91,
+        "k": 6,
+        "delta_vs_single": {
+          "rouge1": [
+            29.11,
+            28.33,
+            29.77
+          ],
+          "rouge2": [
+            33.25,
+            32.33,
+            34.04
+          ],
+          "rougeL": [
+            30.68,
+            29.82,
+            31.44
+          ]
+        }
+      },
+      {
+        "rouge1": 65.54,
+        "rouge2": 48.65,
+        "rougeL": 60.15,
+        "words": 18.93,
+        "k": 7,
+        "delta_vs_single": {
+          "rouge1": [
+            30.85,
+            30.04,
+            31.54
+          ],
+          "rouge2": [
+            36.15,
+            35.17,
+            36.98
+          ],
+          "rougeL": [
+            32.38,
+            31.48,
+            33.19
+          ]
+        }
+      },
+      {
+        "rouge1": 66.53,
+        "rouge2": 50.34,
+        "rougeL": 61.13,
+        "words": 18.95,
+        "k": 8,
+        "delta_vs_single": {
+          "rouge1": [
+            31.84,
+            31.01,
+            32.55
+          ],
+          "rouge2": [
+            37.84,
+            36.85,
+            38.73
+          ],
+          "rougeL": [
+            33.36,
+            32.44,
+            34.19
+          ]
+        }
+      },
+      {
+        "rouge1": 67.44,
+        "rouge2": 51.82,
+        "rougeL": 61.99,
+        "words": 18.97,
+        "k": 9,
+        "delta_vs_single": {
+          "rouge1": [
+            32.75,
+            31.88,
+            33.48
+          ],
+          "rouge2": [
+            39.32,
+            38.32,
+            40.23
+          ],
+          "rougeL": [
+            34.23,
+            33.29,
+            35.06
+          ]
+        }
+      }
+    ]
+  }
+}

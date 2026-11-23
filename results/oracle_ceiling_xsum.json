@@ -1,0 +1,117 @@
+{
+  "task": "xsum",
+  "N": 3000,
+  "levels": [
+    4,
+    6,
+    10,
+    14,
+    20,
+    26,
+    32,
+    40,
+    48
+  ],
+  "target_len": 48,
+  "ref_tokens_mean": 26.23,
+  "ref_truncated_pct": 0.83,
+  "single_pass": {
+    "rouge1": 34.68,
+    "rouge2": 12.51,
+    "rougeL": 27.76,
+    "words": 20.8
+  },
+  "truncation_only": {
+    "rouge1": 99.91,
+    "rouge2": 99.9,
+    "rougeL": 99.91,
+    "words": 21.13
+  },
+  "ceiling": {
+    "rouge1": 99.52,
+    "rouge2": 99.16,
+    "rougeL": 99.51,
+    "words": 21.1
+  },
+  "ceiling_argmax": {
+    "rouge1": 99.64,
+    "rouge2": 99.42,
+    "rougeL": 99.64,
+    "words": 21.13
+  },
+  "ceiling_token_acc": 0.998,
+  "ceiling_exact_pct": 91.33,
+  "corrector_matches_encode": 1.0,
+  "perfect_fine_levels": [
+    {
+      "rouge1": 99.52,
+      "rouge2": 99.16,
+      "rougeL": 99.51,
+      "words": 21.1,
+      "k_generated_levels": 0
+    },
+    {
+      "rouge1": 96.54,
+      "rouge2": 93.3,
+      "rougeL": 96.46,
+      "words": 20.95,
+      "k_generated_levels": 1
+    },
+    {
+      "rouge1": 96.09,
+      "rouge2": 92.54,
+      "rougeL": 95.98,
+      "words": 20.91,
+      "k_generated_levels": 2
+    },
+    {
+      "rouge1": 94.27,
+      "rouge2": 89.36,
+      "rougeL": 94.1,
+      "words": 20.79,
+      "k_generated_levels": 3
+    },
+    {
+      "rouge1": 89.8,
+      "rouge2": 81.9,
+      "rougeL": 89.47,
+      "words": 20.63,
+      "k_generated_levels": 4
+    },
+    {
+      "rouge1": 78.7,
+      "rouge2": 63.86,
+      "rougeL": 77.42,
+      "words": 20.52,
+      "k_generated_levels": 5
+    },
+    {
+      "rouge1": 61.29,
+      "rouge2": 37.66,
+      "rougeL": 56.81,
+      "words": 20.46,
+      "k_generated_levels": 6
+    },
+    {
+      "rouge1": 44.41,
+      "rouge2": 17.05,
+      "rougeL": 36.5,
+      "words": 20.57,
+      "k_generated_levels": 7
+    },
+    {
+      "rouge1": 37.54,
+      "rouge2": 12.43,
+      "rougeL": 29.68,
+      "words": 20.6,
+      "k_generated_levels": 8
+    },
+    {
+      "rouge1": 34.68,
+      "rouge2": 12.51,
+      "rougeL": 27.76,
+      "words": 20.8,
+      "k_generated_levels": 9
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "task": "wmt14",
+  "size": null,
+  "a": "soft Ts=1",
+  "b": "cfg ramp s=1",
+  "judge": "Qwen/Qwen2.5-7B-Instruct",
+  "items": 3003,
+  "mean_preference_for_a": [
+    0.5730115609599599,
+    0.5617031619856283,
+    0.5843002718172768
+  ],
+  "share_preferring_a": [
+    0.5730935730935731,
+    0.5564435564435565,
+    0.5917415917415917
+  ],
+  "order_agreement": 0.5411255411255411,
+  "letter_a_share": 0.6340532299353885,
+  "seconds": 381.40352700099993
+}
