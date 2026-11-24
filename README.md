@@ -1,4 +1,13 @@
-# A Song of Coarse and Fine: V-Cycles and Soft Decisions for Next-Concept Models
+<h1 align="center">A Song of Coarse and Fine</h1>
+
+<p align="center"><strong>V-Cycles and Soft Decisions for Next-Concept Models</strong></p>
+
+<p align="center">
+  <a href="paper/main.pdf"><img src="https://img.shields.io/badge/Paper-PDF-b31b1b.svg" alt="Paper" /></a>
+  <a href="https://arxiv.org/abs/2610.14162"><img src="https://img.shields.io/badge/NCM-arXiv%3A2610.14162-b31b1b.svg" alt="NCM paper" /></a>
+  <a href="https://github.com/HazyResearch/ncm"><img src="https://img.shields.io/badge/NCM-code-181717.svg?logo=github" alt="NCM code" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT license" /></a>
+</p>
 
 Code, result files and paper for *A Song of Coarse and Fine: V-Cycles and Soft Decisions for Next-Concept Models*
 (Tomás Rodrigues, maqia). The paper is in [`paper/main.pdf`](paper/main.pdf).
@@ -9,20 +18,69 @@ alone, and never looks back. That pass is the downward half of a multigrid V-cyc
 whole cycle, with one change for each direction. Both are training-free: the released NCM checkpoints are used
 unchanged, and there is no training code here.
 
-- **V-cycles (the way back up).** A finished draft is re-encoded with the frozen tokenizer, the re-encoded coarse
-  levels are kept, and the fine levels are generated again. One cycle from level `m` costs `K - m` more generator
-  evaluations.
-- **Soft decisions (the way down).** Each level passes on the posterior-mean code vector, the probability-weighted
-  average of its codebook, instead of the vector of the chosen code. The number of generator evaluations stays the
-  same.
+<p align="center">
+  <img src="assets/method.png" width="98%" alt="A V-cycle, a hard decision and a soft decision on the way down" />
+</p>
+
+## Highlights
+
+### V-cycles: the way back up
+
+A finished draft is re-encoded with the frozen tokenizer, the re-encoded coarse levels are kept, and the fine levels are generated again. One cycle from level `m` costs `K - m` more generator evaluations. On unconditional text, one cycle lowers generative perplexity by 14–22% against a control of equal
+compute, on every released LM1B model and on TinyStories.
+
+<p align="center">
+  <img src="assets/vcycle_text.png" width="80%" alt="Generative perplexity after one V-cycle, relative to the equal-compute control" />
+</p>
+
+### Soft decisions: the way down
+
+Each level passes on the posterior-mean code vector, the probability-weighted average of its codebook, instead of the vector of the chosen code. The number of generator evaluations stays the same. On WMT14 German→English this raises BLEU from 21.73 to 25.21.
+
+<p align="center">
+  <img src="assets/soft_translation.png" width="98%" alt="WMT14: BLEU against the soft-decision temperature, and against generator evaluations" />
+</p>
+
+### The full cycle on hard Sudoku
+
+With a rule checker that never sees the solution and a new symmetry frame for every retry, the two changes together
+solve 96.5% of the hard boards at a mean of 14 generator evaluations per board, against 86.15% in one pass of 12.
+
+<p align="center">
+  <img src="assets/hard_sudoku.png" width="98%" alt="Hard Sudoku: boards solved against mean generator evaluations per board" />
+</p>
+
+## Installation
+
+```bash
+git clone https://github.com/maqiaai-lab/ncm-vcycles.git
+cd ncm-vcycles
+./setup.sh        # NCM code at the pinned commit, checkpoints and data at pinned revisions, Python packages
+```
+
+`./setup.sh sudoku wmt14` fetches only the named tasks (`sudoku`, `wmt14`, `xsum`, `lm1b`, `tinystories`).
+
+The experiments ran on Python 3.12 with PyTorch 2.11 (CUDA 12.8); every pinned version is in
+[`PINNED_INPUTS.md`](PINNED_INPUTS.md).
+
+## Usage
+
+Both changes are arguments of one decoder, `LevelDecoder` in [`vcycle/decoding.py`](vcycle/decoding.py), which decodes a
+released NCM checkpoint level by level:
 
 ```python
+from vcycle.loading import load
+from vcycle.decoding import LevelDecoder
+
+ncm = load("artifacts/wmt14", device="cuda")                       # a released NCM checkpoint, unchanged
 dec = LevelDecoder(ncm)
 coarse = dec.encode(tokens)                                        # V-cycle: re-encode the draft,
 codes, z = dec.run(prefix, start=m, codes=coarse)                  # keep its levels < m, regenerate levels m..K-1
 
 codes, z = dec.run(prefix, soft={k: 1.0 for k in range(dec.K)})   # soft decisions at every level, T_s = 1
 ```
+
+The scripts in [`experiments/`](experiments/) are complete runs for every task.
 
 ## Results
 
@@ -134,41 +192,7 @@ What carries this gain, and what does not:
 Without the solution, the level-local round-trip residual detects wrong hard boards with an AUROC of 0.92 (plain
 round-trip residual 0.86, decoder confidence 0.87).
 
-## Repository map
-
-| Path | Contents |
-|---|---|
-| `vcycle/decoding.py` | `LevelDecoder`: level-by-level decoding of a released NCM checkpoint, equivalent to `generate()`; soft decisions (`run(soft=...)`), classifier-free guidance, levels given from outside (`run(start=, codes=)`), cached prompts, encoding (`encode`, `encode_given_coarse`) and decoding |
-| `vcycle/vcycle.py` | the V-cycle of the Sudoku phases: restart-level rules, masked resampling, constraint projection, iterated cycles |
-| `vcycle/sudoku.py`, `vcycle/lm1b.py`, `vcycle/cond.py` | task code: Sudoku format, constraint checks and metrics; unconditional text sampling, scoring and diversity; prompted tasks (XSum, WMT14) and their metrics |
-| `vcycle/loading.py`, `vcycle/common.py`, `vcycle/cache.py`, `vcycle/devsets.py`, `vcycle/plotstyle.py` | loading a released checkpoint; paths; cached single passes; newstest2013 (fetched with sacrebleu); figure style |
-| `experiments/cond_guide_soft.py` | soft decisions, first run: by temperature and level subset, guidance by band; tuning and report halves |
-| `experiments/cond_soft_confirm.py`, `experiments/comet_score.py` | soft decisions: settings chosen on newstest2013, then newstest2014; the XSum articles not used before; COMET |
-| `experiments/soft_ablations.py` | variants of soft decisions: nearest code to the mean, confidence gating, top-k blending |
-| `experiments/oracle_ceiling.py`, `experiments/oracle_plans.py`, `experiments/plan_scores.py`, `experiments/oracle_report.py`, `experiments/comet_oracle.py` | the diagnosis: tokenizer ceiling, plan swaps, search error against model error |
-| `experiments/lm1b_diagnostic.py` (driver: `experiments/run_lm1b.sh`) | unconditional text (LM1B, TinyStories): the single pass, one V-cycle per restart level and its equal-compute control; round-trip residuals |
-| `experiments/lm1b_sweep.py`, `experiments/lm1b_converge.py` | restart levels, repeated cycles, lower temperatures; iterated V-cycles |
-| `experiments/lm1b_quality.py`, `experiments/lm1b_mauve.py` | LM1B-medium beyond GPT-2 perplexity: human anchor, a second scorer, MAUVE with paired subsampling |
-| `experiments/cond_vcycle.py` | prompted tasks: the released single pass (cached for the other scripts) and V-cycles |
-| `experiments/lm1b_frontier.py` | second run, unconditional text: temperature curve, soft decisions under sampling, V-cycle with soft regeneration, cost in code positions |
-| `experiments/cond_cycle_soft.py` | second run, prompted tasks: V-cycles after a soft pass, with their controls |
-| `experiments/cond_mbr.py` | second run, WMT14: minimum-Bayes-risk decoding over sampled candidates, with and without soft decisions |
-| `experiments/phase0_baseline.py`, `phase1_fixed_point.py`, `phase1b_localization.py`, `phase2_vcycle.py`, `phase3_controls.py` (driver: `experiments/run_sudoku.sh`) | Sudoku: reproduction of the released pass; the round-trip residual as an error detector and where it points; greedy V-cycles; checker-gated retries at matched compute |
-| `experiments/sudoku_stack.py` | Sudoku: one pass with soft decisions; retries with symmetry frames, soft decisions and singles propagation |
-| `experiments/ed_sweep.py` | error diffusion within a level (a negative result) |
-| `experiments/judge.py` | pairwise LLM judge (local model; no text leaves the machine) |
-| `experiments/check_gpu_scoring.py`, `experiments/check_prefix_cache.py` | checks of a new machine against the stored samples, and of the cached-prompt path against `generate()` |
-| `experiments/analyze.py`, `experiments/figures.py` | rebuild `results/SUMMARY.md` and `results/summary.json`; draw the exploratory figures in `figures/` |
-| `results/` | raw results (`*.json`), per-sample caches (`cache/`) and the generated `SUMMARY.md`: see [`results/README.md`](results/README.md) |
-| `paper/` | LaTeX source, figures and the scripts that draw them from `results/` |
-
 ## Reproduction
-
-```bash
-./setup.sh        # NCM code at the pinned commit, checkpoints and data at pinned revisions, Python packages
-```
-
-`./setup.sh sudoku wmt14` fetches only the named tasks (`sudoku`, `wmt14`, `xsum`, `lm1b`, `tinystories`).
 
 Soft decisions and the diagnosis (one GPU; on an NVIDIA A10G one WMT14 pass over 3,003 sentences takes about a minute):
 
@@ -270,6 +294,35 @@ node, and its per-sample caches (350 MB) are not in the repository.
 **What is not here.** No training code, and no model trained for this work: every experiment runs the checkpoints of
 the public NCM release.
 
+## Repository layout
+
+| Path | Contents |
+|---|---|
+| `vcycle/decoding.py` | `LevelDecoder`: level-by-level decoding of a released NCM checkpoint, equivalent to `generate()`; soft decisions (`run(soft=...)`), classifier-free guidance, levels given from outside (`run(start=, codes=)`), cached prompts, encoding (`encode`, `encode_given_coarse`) and decoding |
+| `vcycle/vcycle.py` | the V-cycle of the Sudoku phases: restart-level rules, masked resampling, constraint projection, iterated cycles |
+| `vcycle/sudoku.py`, `vcycle/lm1b.py`, `vcycle/cond.py` | task code: Sudoku format, constraint checks and metrics; unconditional text sampling, scoring and diversity; prompted tasks (XSum, WMT14) and their metrics |
+| `vcycle/loading.py`, `vcycle/common.py`, `vcycle/cache.py`, `vcycle/devsets.py`, `vcycle/plotstyle.py` | loading a released checkpoint; paths; cached single passes; newstest2013 (fetched with sacrebleu); figure style |
+| `experiments/cond_guide_soft.py` | soft decisions, first run: by temperature and level subset, guidance by band; tuning and report halves |
+| `experiments/cond_soft_confirm.py`, `experiments/comet_score.py` | soft decisions: settings chosen on newstest2013, then newstest2014; the XSum articles not used before; COMET |
+| `experiments/soft_ablations.py` | variants of soft decisions: nearest code to the mean, confidence gating, top-k blending |
+| `experiments/oracle_ceiling.py`, `experiments/oracle_plans.py`, `experiments/plan_scores.py`, `experiments/oracle_report.py`, `experiments/comet_oracle.py` | the diagnosis: tokenizer ceiling, plan swaps, search error against model error |
+| `experiments/lm1b_diagnostic.py` (driver: `experiments/run_lm1b.sh`) | unconditional text (LM1B, TinyStories): the single pass, one V-cycle per restart level and its equal-compute control; round-trip residuals |
+| `experiments/lm1b_sweep.py`, `experiments/lm1b_converge.py` | restart levels, repeated cycles, lower temperatures; iterated V-cycles |
+| `experiments/lm1b_quality.py`, `experiments/lm1b_mauve.py` | LM1B-medium beyond GPT-2 perplexity: human anchor, a second scorer, MAUVE with paired subsampling |
+| `experiments/cond_vcycle.py` | prompted tasks: the released single pass (cached for the other scripts) and V-cycles |
+| `experiments/lm1b_frontier.py` | second run, unconditional text: temperature curve, soft decisions under sampling, V-cycle with soft regeneration, cost in code positions |
+| `experiments/cond_cycle_soft.py` | second run, prompted tasks: V-cycles after a soft pass, with their controls |
+| `experiments/cond_mbr.py` | second run, WMT14: minimum-Bayes-risk decoding over sampled candidates, with and without soft decisions |
+| `experiments/phase0_baseline.py`, `phase1_fixed_point.py`, `phase1b_localization.py`, `phase2_vcycle.py`, `phase3_controls.py` (driver: `experiments/run_sudoku.sh`) | Sudoku: reproduction of the released pass; the round-trip residual as an error detector and where it points; greedy V-cycles; checker-gated retries at matched compute |
+| `experiments/sudoku_stack.py` | Sudoku: one pass with soft decisions; retries with symmetry frames, soft decisions and singles propagation |
+| `experiments/ed_sweep.py` | error diffusion within a level (a negative result) |
+| `experiments/judge.py` | pairwise LLM judge (local model; no text leaves the machine) |
+| `experiments/check_gpu_scoring.py`, `experiments/check_prefix_cache.py` | checks of a new machine against the stored samples, and of the cached-prompt path against `generate()` |
+| `experiments/analyze.py`, `experiments/figures.py` | rebuild `results/SUMMARY.md` and `results/summary.json`; draw the exploratory figures in `figures/` |
+| `results/` | raw results (`*.json`), per-sample caches (`cache/`) and the generated `SUMMARY.md`: see [`results/README.md`](results/README.md) |
+| `paper/` | LaTeX source, figures and the scripts that draw them from `results/` |
+| `assets/` | the images of this page, made from the paper |
+
 ## Citation
 
 ```bibtex
@@ -281,7 +334,5 @@ the public NCM release.
 }
 ```
 
-## License
-
-The code in this repository is released under the [MIT License](LICENSE). The NCM code, checkpoints and datasets, and
+Released under the [MIT license](LICENSE). The NCM code, checkpoints and datasets, and
 the evaluation models, keep their own terms: see [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
