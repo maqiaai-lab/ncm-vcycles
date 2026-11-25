@@ -21,6 +21,7 @@
 \usepackage[numbers]{natbib}
 \usepackage{array}
 \usepackage{placeins}
+\usepackage{needspace}% start a paragraph on the next page when only a few lines of this one are left
 \usepackage{enumitem}
 \usepackage{caption}
 \usepackage{fontawesome5}  % GitHub icon (\faGithub) for the code link under the title
@@ -754,6 +755,7 @@ single pass at every temperature, and collapses at $T_s=1$ ($-10.4$ BLEU on the 
 levels). The nearest code is often not the argmax (at $T_s=1$ it changes 24--98\% of the codes of the five coarse levels), and
 it decodes to much shorter text (brevity penalty 0.52). The information is in the mixture.
 
+\Needspace{6\baselineskip}% as for "Plan swaps" below: do not resume under the table of the next page
 \paragraph{Confidence gate.} Taking the argmax wherever the generator is confident loses $1.3$ BLEU at
 a threshold of 0.3 and only ties with plain soft decisions at 0.9, where a quarter of the positions are still committed, most of them
 at the fine levels. SeLaR \citep{selar2026} reports gains for autoregressive reasoning models from soft inputs at uncertain steps only;
@@ -779,6 +781,8 @@ Which part of NCM costs the points on translation? The measurements in this sect
 \paragraph{Tokenizer ceiling.} The tokenizer is not the bottleneck. References cut to the model's output length and passed through the
 frozen tokenizer come back at 95.5 BLEU (99.4\% of tokens), and at 99.5 ROUGE-1 on the first 3,000 XSum test articles.
 
+% keep this paragraph whole: when it started in the last lines of a page, it resumed under the table of the next one
+\Needspace{6\baselineskip}
 \paragraph{Plan swaps.} The coarse plan is. We take the output of a stronger German$\to$English system, encode it with the frozen
 tokenizer, give NCM its levels 0--4 in place of NCM's own (47 of 313 code positions), and let NCM generate the other
 levels with the same prompt. With the plan of OPUS-MT \citep{tiedemann2020opusmt} NCM reaches 28.08 BLEU, and with the
